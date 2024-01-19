@@ -1,0 +1,68 @@
+# Task 1
+
+import random
+
+def main():
+  n = int(input("Введіть розмір масиву: "))
+  array = [random.randint(-100, 100) for _ in range(n)]
+
+  sum_negative = sum(array[i] for i in range(n) if array[i] < 0)
+  sum_even = sum(array[i] for i in range(n) if array[i] % 2 == 0)
+  sum_odd = sum(array[i] for i in range(n) if array[i] % 2 != 0)
+
+  product_of_multiples_of_3 = 1
+  for i in range(n):
+    if i % 3 == 0:
+      product_of_multiples_of_3 *= array[i]
+
+  min_value, max_value = min(array), max(array)
+  product_of_elements_between_min_and_max = 1
+  for i in range(n):
+    if array[i] > min_value and array[i] < max_value:
+      product_of_elements_between_min_and_max *= array[i]
+
+  first_positive_index, last_positive_index = next((i for i, x in enumerate(array) if x > 0), -1), next((i for i, x in enumerate(array[::-1]) if x > 0), -1)
+  sum_of_elements_between_first_and_last_positive = sum(array[first_positive_index:last_positive_index + 1])
+
+  print(sum_negative, sum_even, sum_odd, product_of_multiples_of_3, product_of_elements_between_min_and_max, sum_of_elements_between_first_and_last_positive)
+
+if __name__ == "__main__":
+  main()
+
+# Task 2
+
+# Імпортуємо модуль random для генерації випадкових чисел
+import random
+
+# Створюємо список цілих, заповнений 10 випадковими числами від -10 до 10
+numbers = [random.randint(-10, 10) for _ in range(10)]
+
+# Виводимо початковий список
+print("Початковий список:", numbers)
+
+# Створюємо чотири пусті списки для парних, непарних, від'ємних та додатних чисел
+even = []
+odd = []
+negative = []
+positive = []
+
+# Проходимо по всіх елементах початкового списку
+for num in numbers:
+    # Якщо число парне, додаємо його до списку парних чисел
+    if num % 2 == 0:
+        even.append(num)
+    # Інакше, додаємо його до списку непарних чисел
+    else:
+        odd.append(num)
+    # Якщо число від'ємне, додаємо його до списку від'ємних чисел
+    if num < 0:
+        negative.append(num)
+    # Інакше, додаємо його до списку додатних чисел
+    else:
+        positive.append(num)
+
+# Виводимо чотири отримані списки
+print("Список парних чисел:", even)
+print("Список непарних чисел:", odd)
+print("Список від'ємних чисел:", negative)
+print("Список додатних чисел:", positive)
